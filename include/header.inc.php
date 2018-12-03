@@ -7,6 +7,9 @@
   <meta charset="utf-8">
 
 <?php
+    if (empty($_SESSION["user"])) {
+      $_SESSION["user"] = false;
+    }
 		$title = "Bienvenue sur le site de covoiturage de l'IUT.";?>
 		<title>
 		<?php echo $title ?>
@@ -15,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
 </head>
 	<body>
-	<div id="header">	
+	<div id="header">
 		<div id="entete">
 			<div class="colonne">
 				<a href="index.php?page=0">
@@ -26,9 +29,15 @@
 				Covoiturage de l'IUT,<br />Partagez plus que votre véhicule !!!
 			</div>
 			</div>
-			<div id="connect">
-				<a href="index.php?page=11">Connexion</a>
-			</div>
+      <div id="connect">
+<?php
+      if ($_SESSION["user"] == false) {
+        echo "<a href=\"index.php?page=11\">Connexion</a>";
+      }
+      else
+      {
+        echo "<a href=\"index.php?page=12\">Utilisateur : ".$_SESSION["user"]." Déconnexion</a>";
+      }
+?>
+    </div>
 	</div>
-	
-

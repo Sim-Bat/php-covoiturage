@@ -57,34 +57,41 @@ case 8:
 // inclure ici la page lister  ville
 	include("pages/listerVilles.inc.php");
     break;
-
 //
 // Trajets
 //
 case 9:
 	// inclure ici la page proposer trajet
-		
-		include_once('pages/ProposerTrajet.inc.php');		
+		if ($_SESSION["user"]!=false) {
+			include_once('pages/ProposerTrajet.inc.php');
+		} else {
+			echo "<img src=\"image/erreur.png\" alt=\"erreur\" title=\"insertionInvalide\">";
+			echo "	Accès interdit ! Vous devez vous connecter pour accèder à cette page.";
+		}
     break;
+
 case 10:
 	// inclure ici la page rechercher trajet
-			
-		include_once('pages/ChercherTrajet.inc.php');		
-	
-    break;
-    
+		if ($_SESSION["user"]!=false) {
+			include_once('pages/ChercherTrajet.inc.php');
+		} else {
+			echo "<img src=\"image/erreur.png\" alt=\"erreur\" title=\"insertionInvalide\">";
+			echo "	Accès interdit ! Vous devez vous connecter pour accèder à cette page.";
+		}
+		break;
+
 case 11:
 	// inclure ici la page de connexion
 	include_once('pages/Connexion.inc.php');
     break;
 
 case 12:
-	// inclure ici la page de d�connexion
+	// inclure ici la page de d�connexion
 	include_once('pages/Deconnexion.inc.php');
-    break;    
-    
+    break;
+
 default : 	include_once('pages/accueil.inc.php');
 }
-	
+
 ?>
 </div>

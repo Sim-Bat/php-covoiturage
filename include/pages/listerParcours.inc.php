@@ -4,7 +4,7 @@ $ParcoursManager = new ParcoursManager($pdo);
 $parcours=$ParcoursManager->getAllParcours();
 $nbParcours = $ParcoursManager->getNbParcours();
 ?>
-<h1>Liste des villes</h1>
+<h1>Liste des parcours</h1>
 <?php
   echo "Actuellement $nbParcours parcours sont enregistrées";
 ?>

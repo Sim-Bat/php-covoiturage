@@ -1,10 +1,11 @@
 <?php
 class VilleManager{
-	private $dbo;
+	private $db;
 
 		public function __construct($db){
 			$this->db = $db;
 		}
+
     public function add($ville){
         $requete = $this->db->prepare(
 				'INSERT INTO VILLE (vil_nom) VALUES (:nomVille);');
@@ -38,6 +39,17 @@ class VilleManager{
 
 			$nbreVille = $requete->fetch(PDO::FETCH_OBJ);
 			return $nbreVille->nbVille;
+		}
+
+		public function getVille($num) {
+
+			$sql = 'SELECT vil_nom FROM VILLE WHERE vil_num = '.$num;
+
+			$requete = $this->db->prepare($sql);
+			$requete->execute();
+
+			$ville = $requete->fetch(PDO::FETCH_OBJ);
+			return $ville->vil_nom;
 		}
 }
 ?>

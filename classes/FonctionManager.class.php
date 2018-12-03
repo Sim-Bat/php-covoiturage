@@ -1,10 +1,11 @@
 <?php
-class FonctionManager{
-	private $dbo;
+class FonctionManager {
+	private $db;
 
 		public function __construct($db){
 			$this->db = $db;
 		}
+		
     public function add($fonction){
         $requete = $this->db->prepare(
 				'INSERT INTO FONCTION (fon_num, fon_libelle) VALUES (:fon_num, :fon_libelle);');

@@ -1,7 +1,9 @@
 <?php
 $pdo=new Mypdo();
+$EtudiantManager = new EtudiantManager($pdo);
+$SalarieManager = new SalarieManager($pdo);
 $PersonneManager = new PersonneManager($pdo);
-$personnes=$PersonneManager->getAllPersonnes();
+$personnes = $PersonneManager->getAllPersonnes();
 $nbPersonnes = $PersonneManager->getNbPersonnes();
 
 if(empty($_GET["perNum"])){
@@ -14,7 +16,7 @@ if(empty($_GET["perNum"])){
 		<tr>
       <th>Numéro</th>
       <th>Nom</th>
-      <th>Prenom</th>
+      <th>Prénom</th>
     </tr>
 <?php
     foreach ($personnes as $personne) {
@@ -31,6 +33,53 @@ if(empty($_GET["perNum"])){
 }
 else
 {
-    
+    $num = $_GET["perNum"];
+    $pers = $PersonneManager->getPersonne($num);
+    if($PersonneManager->isEtudiant($num)) {
+
+      echo "<h1>Détail sur l'étudiant ".$PersonneManager->getPersonne($num)->getPerNom()."</h1>";
+?>
+      <table border=1>
+      		<tr>
+            <th>Prénom</th>
+            <th>Mail</th>
+            <th>Tel</th>
+            <th>Département</th>
+            <th>Ville</th>
+          </tr>
+<?php
+        echo "<tr>";
+          echo "<td>".$pers->getPerPrenom()."</td>";
+          echo "<td>".$pers->getPerMail()."</td>";
+          echo "<td>".$pers->getPerTel()."</td>";
+          echo "<td>".$EtudiantManager->getDepNomEtu($num)."</td>";
+          echo "<td>".$EtudiantManager->getDepVilleEtu($num)."</td>";
+        echo "</tr>";
+      echo "</table>";
+    }
+    else
+    {
+      $sal = new Salarie($SalarieManager->getSalarie($num));
+
+      echo "<h1>Détail sur le salarié".$pers->getPerNom()."</h1>";
+?>
+      <table border=1>
+          <tr>
+            <th>Prénom</th>
+            <th>Mail</th>
+            <th>Tel</th>
+            <th>Tel pro</th>
+            <th>Fonction</th>
+          </tr>
+<?php
+        echo "<tr>";
+          echo "<td>".$pers->getPerPrenom()."</td>";
+          echo "<td>".$pers->getPerMail()."</td>";
+          echo "<td>".$pers->getPerTel()."</td>";
+          echo "<td>".$SalarieManager->gettelProSal($num)."</td>";
+          echo "<td>".$SalarieManager->getFonNomSal($num)."</td>";
+        echo "</tr>";
+      echo "</table>";
+    }
 }
 ?>

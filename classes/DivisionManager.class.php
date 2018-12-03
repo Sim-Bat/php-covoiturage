@@ -1,10 +1,11 @@
 <?php
 class DivisionManager{
-	private $dbo;
+	private $db;
 
 		public function __construct($db){
 			$this->db = $db;
 		}
+		
     public function add($division){
         $requete = $this->db->prepare(
 				'INSERT INTO DIVISION (div_num, div_nom) VALUES (:div_num, :div_nom);');

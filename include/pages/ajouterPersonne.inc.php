@@ -21,7 +21,7 @@
     Prenom : <input type="text" name="per_prenom" size="10">
     <br /><br />
     Téléphone : <input type="text" name="per_tel" size="10">
-    Mail : <input type="text" name="per_mail" size="10">
+    Mail : <input type="email" name="per_mail" size="10">
     <br /><br />
     Login : <input type="text" name="per_login" size="10">
     Mot de passe : <input type="password" name="per_pwd" size="10">

@@ -46,6 +46,7 @@ class Parcours{
   public function setNumVille1Parcours($ville1Parcours){
           $this->numVille1=$ville1Parcours;
   }
+
 	public function getNomVille1Parcours() {
 					return $this->nomVille1;
 	}
@@ -59,6 +60,7 @@ class Parcours{
   public function setNumVille2Parcours($ville2Parcours){
           $this->numVille2=$ville2Parcours;
   }
+	
 	public function getNomVille2Parcours() {
 					return $this->nomVille2;
 	}
